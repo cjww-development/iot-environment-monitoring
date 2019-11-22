@@ -12,10 +12,14 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-from pyhocon import ConfigFactory
-import os
+from iotenvmonitoring.config.config_loader import ConfigLoader
+from apscheduler.schedulers.blocking import BlockingScheduler
 
 
-class ConfigLoader:
+class APScheduler:
     def __init__(self):
-        self.conf = ConfigFactory.parse_file("./iotenvmonitoring/config/application.conf")
+        self.conf = ConfigLoader().conf
+        self.scheduler = BlockingScheduler()
+
+    def start(self):
+        self.scheduler.start()
