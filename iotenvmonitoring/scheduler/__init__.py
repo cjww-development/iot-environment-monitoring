@@ -12,10 +12,3 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-from pyhocon import ConfigFactory
-import os
-
-
-class ConfigLoader:
-    def __init__(self):
-        self.conf = ConfigFactory.parse_file("./iotenvmonitoring/config/application.conf")
