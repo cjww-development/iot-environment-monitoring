@@ -34,6 +34,11 @@ cd utils
 docker-compose up -d
 ```
 
+Once up and running, create a SQS using the [aws cli](https://aws.amazon.com/cli/).
+```shell script
+aws --endpoint-url=http://localhost:4576 sqs create-queue --queue-name env-data-dev
+```
+
 For a "live" environment go into `config/application.conf` and change the `aws.sqs` config block to connect to actual AWS services.
 
 ## Outbound messages
