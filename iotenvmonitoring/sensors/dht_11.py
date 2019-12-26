@@ -15,17 +15,20 @@
 import Adafruit_DHT
 import random
 from iotenvmonitoring.config.config_loader import ConfigLoader
+from iotenvmonitoring.logging.logger import Logger
 
 
 class DHT11:
     def __init__(self, name):
         self.conf = ConfigLoader().conf
+        self.logger = Logger().logger
         self.pin = self.conf[f'sensors.{name}.pin']
         self.test_mode = self.conf[f'sensors.{name}.test-mode']
         self.sensor = Adafruit_DHT.DHT11
 
     def attempt_read(self):
         if self.test_mode:
+            self.logger.warn("[DHT11] - [attempt_read] - Monitor is in test mode; generating fake data")
             return "{0:.2f}".format(random.random()), "{0:.2f}".format(random.uniform(0, 100))
         else:
             return Adafruit_DHT.read(self.sensor, self.pin)
