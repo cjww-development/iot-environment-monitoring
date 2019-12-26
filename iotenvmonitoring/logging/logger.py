@@ -12,26 +12,21 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-rabbitmq {
-  publishers {
-    air-data {
-      queue: "air-data-queue"
-      exchange: "direct-messaging-exchange"
-      host: "localhost"
-      user: "guest"
-      pass: "guest"
-    }
-  }
-}
+import logging
+import sys
 
-aws {
-  sqs {
-    env-data {
-      name: "env-data-dev"
-      region: "us-east-1"
-      ssl: false
-      endpoint-url: "http://localhost:4576"
-      queue-url: "http://localhost:4576/queue/env-data-dev"
-    }
-  }
-}
+
+class Logger:
+    def __init__(self):
+        self._logger = logging.getLogger()
+        logging.basicConfig(filename='app.log', filemode='w')
+        self._logger.setLevel(logging.INFO)
+        handler = logging.StreamHandler(sys.stdout)
+        handler.setLevel(logging.INFO)
+        formatter = logging.Formatter('[%(asctime)s] - [%(name)s] - [%(levelname)s] - %(message)s')
+        handler.setFormatter(formatter)
+        self._logger.addHandler(handler)
+
+    @property
+    def logger(self):
+        return self._logger

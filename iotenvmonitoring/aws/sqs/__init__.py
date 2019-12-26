@@ -12,26 +12,3 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-rabbitmq {
-  publishers {
-    air-data {
-      queue: "air-data-queue"
-      exchange: "direct-messaging-exchange"
-      host: "localhost"
-      user: "guest"
-      pass: "guest"
-    }
-  }
-}
-
-aws {
-  sqs {
-    env-data {
-      name: "env-data-dev"
-      region: "us-east-1"
-      ssl: false
-      endpoint-url: "http://localhost:4576"
-      queue-url: "http://localhost:4576/queue/env-data-dev"
-    }
-  }
-}

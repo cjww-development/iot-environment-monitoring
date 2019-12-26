@@ -12,20 +12,9 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-from iotenvmonitoring.scheduler.apscheduler import APScheduler
-from apscheduler.schedulers.blocking import BlockingScheduler
+from iotenvmonitoring.aws.sqs.publisher import SQSPublisher
 
-scheduler = BlockingScheduler()
+publisher = SQSPublisher("env-data")
 
-
-def printer():
-    print("I'm printed every second!")
-
-def printer_two():
-    print("I'm printed every 5 seconds!")
-
-
-scheduler.add_job(printer, 'interval', id='printer', seconds=1)
-scheduler.add_job(printer_two, 'interval', id='printer_two', seconds=5)
 def run():
-    scheduler.start()
+    publisher.send_message('{"test" : "message"}')
