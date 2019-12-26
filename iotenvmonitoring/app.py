@@ -12,10 +12,16 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+import sys
+
 
 class App:
     def __init__(self):
         print("Application init")
 
     def run(self):
-        print("Application entry point")
+        if len(sys.argv) > 1:
+            mode = sys.argv[1]
+            print(f"Test mode is {mode}")
+        else:
+            print("App entry point")
