@@ -21,7 +21,7 @@ class EnvData:
         self.hum = humidity
 
     def c_to_f(self):
-        return (self.temp * (9 / 5)) + 32
+        return (float(self.temp) * (9 / 5)) + 32
 
     def to_json_msg(self):
         return str({

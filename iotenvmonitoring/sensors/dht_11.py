@@ -14,12 +14,14 @@
 
 import Adafruit_DHT
 import random
+from iotenvmonitoring.config.config_loader import ConfigLoader
 
 
 class DHT11:
-    def __init__(self, pin, test_mode):
-        self.pin = pin
-        self.test_mode = test_mode
+    def __init__(self, name):
+        self.conf = ConfigLoader().conf
+        self.pin = self.conf[f'sensors.{name}.pin']
+        self.test_mode = self.conf[f'sensors.{name}.test-mode']
         self.sensor = Adafruit_DHT.DHT11
 
     def attempt_read(self):
