@@ -1,3 +1,4 @@
+Adafruit_Python_DHT==1.4.0
 boto3==1.10.45
 botocore==1.13.45
 docutils==0.15.2
