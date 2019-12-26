@@ -12,7 +12,9 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-from iotenvmonitoring import app
+from iotenvmonitoring.app import App
+
+app = App()
 
 if __name__ == '__main__':
     app.run()

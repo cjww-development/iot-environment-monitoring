@@ -12,9 +12,10 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-from iotenvmonitoring.aws.sqs.publisher import SQSPublisher
 
-publisher = SQSPublisher("env-data")
+class App:
+    def __init__(self):
+        print("Application init")
 
-def run():
-    publisher.send_message('{"test" : "message"}')
+    def run(self):
+        print("Application entry point")
